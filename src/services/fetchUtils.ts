@@ -16,9 +16,9 @@ export function makeOptions(method: string, body: object | null, addToken?: bool
     opts.body = JSON.stringify(body);
   }
   if (addToken) {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
       //@ts-ignore
-      opts.headers["Authorization"] = "Bearer " + token;
+      opts.headers["Authorization"] = `Bearer ${import.meta.env.CI_CD_TOKEN}`;
   }
 
   return opts;

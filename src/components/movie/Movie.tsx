@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getMovie, Movie } from "../../services/apiFacade";
 
 export default function Movie() {
   const { id } = useParams();
   console.log("id", id);
 
-  const [movie, setMovie] = useState<ApiMovie | null>(null);
+  const [movie, setMovie] = useState<Movie | null>(null); 
   useEffect(() => {
-    getMovie(Number(id)).then((res) => setMovie(res));
+    getMovie(Number(id)).then((res: Movie) => setMovie(res));
   }, [id]);
 
   return (
@@ -15,7 +16,6 @@ export default function Movie() {
       {movie ? (
         <>
           <h3>
-            {" "}
             {movie.name} ({movie.id})
           </h3>
           <div style={{ display: "flex" }}>

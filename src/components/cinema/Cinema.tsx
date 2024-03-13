@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getCinema, Cinema as ApiCinema, Movie } from "../../services/apiFacade";
 
 export default function Cinema() {
   const { id } = useParams();
 
-  const [recipe, setCinema] = useState<ApiCinema | null>(null);
+  const [cinema, setCinema] = useState<ApiCinema | null>(null);
   useEffect(() => {
     getCinema(Number(id)).then((res) => setCinema(res));
   }, [id]);
@@ -20,8 +21,8 @@ export default function Cinema() {
           <div>
             <ul>
               {/* navngiv evt til activeScreenings... */}
-              {cinema.activeMovies.map((activeMovie) => (
-                <li key={activeMovie}>{activeMovie}</li>
+              {cinema.activeMovies.map((activeMovie: Movie) => (
+                <li key={activeMovie.id}>{activeMovie.name}</li>
               ))}
             </ul>
           </div>

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMovie, Movie } from "../../services/apiFacade";
+import type { Movie } from "../../services/apiFacade";
+import { getMovie } from "../../services/apiFacade";
 
 export default function Movie() {
   const { id } = useParams();

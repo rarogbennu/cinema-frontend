@@ -7,7 +7,7 @@ export default function Home() {
       <h1>Velkommen til kino</h1>
       <div>
         <button className="card" onClick={() => setCount((count) => count + 1)}>
-          Klik her, hvis du havde en god oplevelse❤️!!!
+          Klik her, hvis du havde en god oplevelse❤️!!!!
         </button>
         <p>Gode oplevelser: {count} </p>
       </div>

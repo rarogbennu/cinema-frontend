@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCinema, Cinema as ApiCinema, Movie } from "../../services/apiFacade";
+import { getCinema, Cinema as ApiCinema } from "../../services/apiFacade";
 
 export default function Cinema() {
   const { id } = useParams();
@@ -19,12 +19,12 @@ export default function Cinema() {
             {cinema.name} ({cinema.id})
           </h3>
           <div>
-            <ul>
-              {/* navngiv evt til activeScreenings... */}
+            {/* <ul>
+              navngiv evt til activeScreenings...
               {cinema.activeMovies.map((activeMovie: Movie) => (
                 <li key={activeMovie.id}>{activeMovie.name}</li>
               ))}
-            </ul>
+            </ul> */}
           </div>
           <hr />{" "}
         </>

@@ -4,13 +4,12 @@ import { makeOptions, handleHttpErrors } from "./fetchUtils";
 const MOVIE_URL = API_URL + "/movies";
 const CINEMA_URL = API_URL + "/cinemas";
 
-
 interface Cinema {
   id: number | null;
   name: string;
   location: string;
-  activeMovies: Movie[];
-  }
+  screens: string;
+}
 
 interface Movie {
   id: number | null;
@@ -21,8 +20,7 @@ interface Movie {
   starringActors: string;
   instructor: string;
 }
-// @ts-ignore
-let cinemas: Array<string> = [];
+let cinemas: Cinema[] = [];
 // let movies: Array<Movie> = [];
 
 // async function getMovies(): Promise<Array<Movie>> {
@@ -33,7 +31,9 @@ let cinemas: Array<string> = [];
 // }
 
 async function getMovies(): Promise<Movie[]> {
-  return fetch(MOVIE_URL).then(handleHttpErrors).then(res => res.json());
+  return fetch(MOVIE_URL)
+    .then(handleHttpErrors)
+    .then((res) => res.json());
 }
 
 // async function getMovie(id: number): Promise<Movie> {
@@ -42,8 +42,11 @@ async function getMovies(): Promise<Movie[]> {
 //   return fetch(MOVIE_URL + "/" + id).then(handleHttpErrors);
 // }
 
-async function getMovie(id: number): Promise<Movie> { // Define getMovie function to fetch a single movie by ID
-  return fetch(`${MOVIE_URL}/${id}`).then(handleHttpErrors).then(res => res.json());
+async function getMovie(id: number): Promise<Movie> {
+  // Define getMovie function to fetch a single movie by ID
+  return fetch(`${MOVIE_URL}/${id}`)
+    .then(handleHttpErrors)
+    .then((res) => res.json());
 }
 
 async function addMovie(newMovie: Movie): Promise<Movie> {
@@ -58,18 +61,16 @@ async function deleteMovie(id: number): Promise<Movie> {
   return fetch(`${MOVIE_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-
 async function getCinema(id: number): Promise<Cinema> {
-    return fetch(CINEMA_URL + "/" + id).then(handleHttpErrors);
+  return fetch(CINEMA_URL + "/" + id).then(handleHttpErrors);
 }
 
-async function getAllCinemas(cinema: string | null): Promise<Cinema[]> {
-  const queryParams = cinema ? "?cinema=" + cinema : "";
-  return fetch(CINEMA_URL + queryParams)
-    .then(handleHttpErrors)
-    .then((data) => data.cinemas); // Assuming the response returns an object with a 'cinemas' property containing cinema data
+async function getAllCinemas(): Promise<Cinema[]> {
+  if (cinemas.length > 0) return [...cinemas];
+  const res = await fetch(CINEMA_URL).then(handleHttpErrors);
+  cinemas = [...res];
+  return cinemas;
 }
-
 
 export type { Movie, Cinema };
 // eslint-disable-next-line react-refresh/only-export-components

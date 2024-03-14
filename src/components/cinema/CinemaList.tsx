@@ -6,7 +6,7 @@ export default function CinemaList() {
   const [cinemas, setCinemas] = useState<Cinema[] | null>(null);
 
   useEffect(() => {
-    getAllCinemas(null).then((res) => setCinemas(res));
+    getAllCinemas().then((res) => setCinemas(res));
   }, []);
 
   return (

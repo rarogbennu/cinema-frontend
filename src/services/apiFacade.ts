@@ -21,32 +21,18 @@ interface Movie {
   instructor: string;
 }
 let cinemas: Cinema[] = [];
-// let movies: Array<Movie> = [];
+let movies: Array<Movie> = [];
 
-// async function getMovies(): Promise<Array<Movie>> {
-//   if (movies.length > 0) return [...movies];
-//   console.log("fetching movies");
-
-//   return fetch(MOVIE_URL + queryParams).then(handleHttpErrors);
-// }
-
-async function getMovies(): Promise<Movie[]> {
-  return fetch(MOVIE_URL)
-    .then(handleHttpErrors)
-    .then((res) => res.json());
+async function getMovies(): Promise<Array<Movie>> {
+  if (movies.length > 0) return [...movies];
+  console.log("fetching movies");
+  return fetch(MOVIE_URL).then(handleHttpErrors);
 }
 
-// async function getMovie(id: number): Promise<Movie> {
-//   //@ts-ignore
-//   if (movies.length > 0) return [...movies];
-//   return fetch(MOVIE_URL + "/" + id).then(handleHttpErrors);
-// }
-
 async function getMovie(id: number): Promise<Movie> {
-  // Define getMovie function to fetch a single movie by ID
-  return fetch(`${MOVIE_URL}/${id}`)
-    .then(handleHttpErrors)
-    .then((res) => res.json());
+  //@ts-ignore
+  if (movies.length > 0) return [...movies];
+  return fetch(MOVIE_URL + "/" + id).then(handleHttpErrors);
 }
 
 async function addMovie(newMovie: Movie): Promise<Movie> {

@@ -4,37 +4,31 @@ import type { Movie } from "../../services/apiFacade";
 import { getMovie } from "../../services/apiFacade";
 
 export default function Movie() {
-  const { id } = useParams();
-  console.log("id", id);
+  const { imdbID } = useParams<{ imdbID }>();
+  const [movie, setMovie] = useState<Movie | null>(null);
 
-  const [movie, setMovie] = useState<Movie | null>(null); 
   useEffect(() => {
-    getMovie(Number(id)).then((res: Movie) => setMovie(res));
-  }, [id]);
+    const fetchMovie = async () => {
+      try {
+        const fetchedMovie = await getMovie(imdbID);
+        setMovie(fetchedMovie);
+      } catch (error) {
+        console.error("Error fetching movie:", error);
+      }
+    };
+
+    fetchMovie();
+  }, [imdbID]);
+
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      {movie ? (
-        <>
-          <h3>
-            {movie.name} ({movie.id})
-          </h3>
-          <div style={{ display: "flex" }}>
-            <img
-              style={{ width: 200, margin: 10, flexDirection: "column" }}
-              src={movie.poster}
-              alt={movie.name}
-            />
-            <p style={{ display: "inline", flexDirection: "column" }}>
-              {movie.duration} min
-            </p>
-          </div>
-          <hr />
-          <p style={{ whiteSpace: "pre-wrap" }}>{movie.description}</p>
-        </>
-      ) : (
-        <h2>Movie not found :'(</h2>
-      )}
-    </>
+    <div>
+      <h1>{movie.Title}</h1>
+      <p>{movie.Poster}</p>
+      {/* Add more details here */}
+    </div>
   );
 }

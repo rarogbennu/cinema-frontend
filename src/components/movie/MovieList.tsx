@@ -22,8 +22,8 @@ export default function MovieList() {
 
   const movieListItems = movies.map((movie) => {
     return (
-      <li key={movie.id}>
-        <Link to={`${movie.id}`}>{movie.name}</Link>
+      <li key={movie.imdbID}>
+        <Link to={`${movie.imdbID}`}>{movie.Title}</Link>
       </li>
     );
   });

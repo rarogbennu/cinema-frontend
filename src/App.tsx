@@ -8,6 +8,7 @@ import Home from "./components/navigation/Home";
 import LoginComponent from "./security/LoginComponent";
 import LogoutComponent from "./security/LogoutComponent.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
+import ScreeningsComponent from "./components/screenings/ScreeningComponent.tsx";
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
           <Route path="/cinemas/" element={<CinemaList />} />
           <Route path="/movies" element={<MoviesLayout />}>
             <Route path=":id" element={<Movie />} />
+          </Route>
+          <Route path="/screenings" element={<ScreeningsComponent />}>
+
           </Route>
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/logout" element={<LogoutComponent />} />

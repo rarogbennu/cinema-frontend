@@ -4,13 +4,13 @@ import type { Movie } from "../../services/apiFacade";
 import { getMovie } from "../../services/apiFacade";
 
 export default function Movie() {
-  const { imdbID } = useParams<{ imdbID }>();
+  const { imdbID } = useParams<{ imdbID : string}>();
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const fetchedMovie = await getMovie(imdbID);
+        const fetchedMovie = await getMovie(imdbID || ""); // Provide a default value for imdbID
         setMovie(fetchedMovie);
       } catch (error) {
         console.error("Error fetching movie:", error);

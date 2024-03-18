@@ -41,6 +41,7 @@ interface Screening {
 }
 
 interface Movie {
+  id: number;
   Title: string;
   Year: string;
   Rated: string;
@@ -204,8 +205,8 @@ async function getAllMovies(): Promise<Array<Movie>> {
   return movie;
 }
 
-async function getMovie(imdbID: string): Promise<Movie> {
-  return fetch(MOVIE_URL + "/" + imdbID).then(handleHttpErrors);
+async function getMovie(id: number): Promise<Movie> {
+  return fetch(MOVIE_URL + "/" + id).then(handleHttpErrors);
 }
 
 // Add Movie

@@ -4,31 +4,45 @@ import type { Movie } from "../../services/apiFacade";
 import { getMovie } from "../../services/apiFacade";
 
 export default function Movie() {
-  const { imdbID } = useParams<{ imdbID : string}>();
+  const { id } = useParams<{ id: number }>();
+  console.log("id", id);
+
   const [movie, setMovie] = useState<Movie | null>(null);
-
   useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const fetchedMovie = await getMovie(imdbID || ""); // Provide a default value for imdbID
-        setMovie(fetchedMovie);
-      } catch (error) {
-        console.error("Error fetching movie:", error);
-      }
-    };
+    getMovie(id | 0).then((res) => {
+      console.log("movie data", res);
+      setMovie(res);
+    });
+  }, [id]);
 
-    fetchMovie();
-  }, [imdbID]);
-
-  if (!movie) {
-    return <div>Loading...</div>;
-  }
+  console.log("movie", movie);
 
   return (
-    <div>
-      <h1>{movie.Title}</h1>
-      <p>{movie.Poster}</p>
-      {/* Add more details here */}
-    </div>
+    <>
+      {movie ? (
+        <>
+          <h3> Titel: {movie.Title} ({movie.id})</h3>
+          <div style={{ display: "flex" }}>
+            <img
+              style={{ width: 200, margin: 10, flexDirection: "column" }}
+              src={movie.Poster}
+              alt={movie.Title}
+            />
+            <p style={{ display: "inline", flexDirection: "column" }}>
+              <strong>Director:</strong> {movie.Director}<br />
+              <strong>Genre:</strong> {movie.Genre}<br />
+              <strong>Released:</strong> {movie.Released}<br />
+              <strong>Runtime:</strong> {movie.Runtime}<br />
+              <strong>IMDb Rating:</strong> {movie.imdbRating}<br />
+              <strong>IMDb Votes:</strong> {movie.imdbVotes}<br />
+            </p>
+          </div>
+          <hr />
+          <p style={{ whiteSpace: "pre-wrap" }}>{movie.Plot}</p>
+        </>
+      ) : (
+        <h2>Sorry. Movie not found</h2>
+      )}
+    </>
   );
 }

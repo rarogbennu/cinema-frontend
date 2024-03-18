@@ -5,8 +5,10 @@ export default function Home() {
   return (
     <>
       <h1>Velkommen til kino</h1>
+      <button className="card">Roskilde Bio</button>
+      <button className="card">Kbh Bio</button>
       <div>
-        <button className="card" onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount((count) => count + 1)}>
           Klik HER, hvis du havde en god oplevelse❤️!!!!
         </button>
         <p>Gode oplevelser: {count} </p>

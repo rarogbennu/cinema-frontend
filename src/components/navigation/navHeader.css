@@ -1,0 +1,35 @@
+@import url("../../index.css");
+
+.navbar {
+  background-color: var(--kinoyellow);
+  color: var(--kinocoral);
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 10em;
+  left: 0;
+  z-index: 999;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: var(--kinocoral);
+}
+
+.navbar ul li a:hover {
+  color: var(--kinoorange);
+}
+.navbar ul li a.active {
+  text-decoration: underline;
+}

@@ -23,6 +23,9 @@ export default function NavHeader() {
         </li>
         {/* )} */}
         {/* <AuthStatus /> */}
+        <li>
+          <img src="src/assets/popcorn.png" alt="popcorn logo" />
+        </li>
       </ul>
     </nav>
   );

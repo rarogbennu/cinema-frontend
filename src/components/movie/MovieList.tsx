@@ -24,7 +24,6 @@ export default function MovieList() {
       return (
         <li key={movie.id}>
           <Link to={`${movie.id}`}>{movie.Title}</Link>
-          <p>{movie.Director}</p>
         </li>
       );
     });

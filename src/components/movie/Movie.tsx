@@ -4,6 +4,7 @@ import type { Movie } from "../../services/apiFacade";
 import { getMovie } from "../../services/apiFacade";
 
 export default function Movie() {
+  // @ts-ignore
   const { id } = useParams<{ id: number }>();
   console.log("id", id);
 

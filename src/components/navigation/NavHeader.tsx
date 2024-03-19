@@ -33,7 +33,11 @@ export default function NavHeader() {
           </li>
         )}
         <li>
-          <img src="src/assets/popcorn.png" alt="popcorn logo" />
+          <img
+            className="popping"
+            src="src/assets/popcorn.png"
+            alt="popcorn logo"
+          />
         </li>
       </ul>
     </nav>

@@ -36,8 +36,8 @@ interface Screening {
   id: number;
   movieId: number;
   screenId: number;
-  startTime: string;
-  endTime: string;
+  date: string;
+  is3D: boolean;
 }
 
 interface Movie {

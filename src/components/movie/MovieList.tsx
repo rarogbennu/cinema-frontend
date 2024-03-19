@@ -19,22 +19,23 @@ export default function MovieList() {
 
     fetchMovies();
   }, []);
+  
+    const movieListItems = movies.map((movie) => {
+      return (
+        <li key={movie.id}>
+          <Link to={`${movie.id}`}>{movie.Title}</Link>
+          <p>{movie.Director}</p>
+        </li>
+      );
+    });
 
-  const movieListItems = movies.map((movie) => {
+    if (error !== "") {
+      return <h2 style={{ color: "red" }}>{error}</h2>;
+    }
     return (
-      <li key={movie.imdbID}>
-        <Link to={`${movie.imdbID}`}>{movie.Title}</Link>
-      </li>
+      <>
+        <h3>Movies</h3>
+        <ul style={{ listStyle: "none", paddingLeft: 0 }}>{movieListItems}</ul>
+      </>
     );
-  });
-
-  if (error !== "") {
-    return <h2 style={{ color: "red" }}>{error}</h2>;
-  }
-  return (
-    <>
-      <h3>Movies</h3>
-      <ul style={{ listStyle: "none", paddingLeft: 0 }}>{movieListItems}</ul>
-    </>
-  );
 }

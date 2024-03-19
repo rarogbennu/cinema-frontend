@@ -1,0 +1,19 @@
+/* Define styles for the screenings */
+.screening-card {
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  padding: 10px; /* Add padding */
+  margin: 10px; /* Add margin between cards */
+  width: 200px; /* Set fixed width */
+}
+
+/* Style for the movie title */
+.movie-title {
+  font-weight: bold; /* Make the title bold */
+}
+
+/* Style for the movie details */
+.movie-details {
+  margin-top: 5px; /* Add margin to separate title and details */
+  font-size: 14px; /* Set font size for details */
+}

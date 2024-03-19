@@ -15,7 +15,7 @@ export default function NavHeader() {
           <NavLink to="/cinemas">Cinemas</NavLink>
         </li>
         <li>
-          <NavLink to="/movies">Movies</NavLink>
+          <NavLink to="/movies">Movies</NavLink>  
         </li>
         {!auth.isLoggedIn() && (
             <li>

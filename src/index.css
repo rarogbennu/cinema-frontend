@@ -9,7 +9,7 @@
   --kinoblue: #22559c;
   --kinocoral: #f27370;
   --kinoorange: #fa9856;
-  --kinoyellow: #ede862;
+  --kinoyellow: #fffa6a;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,7 +33,8 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 1.6em 1.2em;
+  border: 1px solid var(--kinoblue);
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;

@@ -43,6 +43,7 @@ interface Screening {
 interface Movie {
   id: number;
   title: string;
+  Title: string;
   year: string;
   rated: string;
   released: string;

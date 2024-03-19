@@ -9,7 +9,7 @@ export default function Movie() {
 
   const [movie, setMovie] = useState<Movie | null>(null);
   useEffect(() => {
-    getMovie(id | 0).then((res) => {
+    getMovie(id || 0).then((res) => {
       console.log("movie data", res);
       setMovie(res);
     });
@@ -21,24 +21,24 @@ export default function Movie() {
     <>
       {movie ? (
         <>
-          <h3> Titel: {movie.Title} ({movie.id})</h3>
+          <h3> Titel: {movie.title}</h3>
           <div style={{ display: "flex" }}>
             <img
               style={{ width: 200, margin: 10, flexDirection: "column" }}
-              src={movie.Poster}
-              alt={movie.Title}
+              src={movie.poster}
+              alt={movie.title}
             />
             <p style={{ display: "inline", flexDirection: "column" }}>
-              <strong>Director:</strong> {movie.Director}<br />
-              <strong>Genre:</strong> {movie.Genre}<br />
-              <strong>Released:</strong> {movie.Released}<br />
-              <strong>Runtime:</strong> {movie.Runtime}<br />
+              <strong>Director:</strong> {movie.director}<br />
+              <strong>Genre:</strong> {movie.genre}<br />
+              <strong>Released:</strong> {movie.released}<br />
+              <strong>Runtime:</strong> {movie.runtime}<br />
               <strong>IMDb Rating:</strong> {movie.imdbRating}<br />
               <strong>IMDb Votes:</strong> {movie.imdbVotes}<br />
             </p>
           </div>
           <hr />
-          <p style={{ whiteSpace: "pre-wrap" }}>{movie.Plot}</p>
+          
         </>
       ) : (
         <h2>Sorry. Movie not found</h2>

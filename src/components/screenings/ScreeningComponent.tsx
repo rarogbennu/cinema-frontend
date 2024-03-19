@@ -56,7 +56,7 @@ function MovieDetails({ movieId }: { movieId: number }) {
     <div>
       {movie ? (
         <div>
-          <h3>Movie: {movie.Title}</h3>
+          <h3>Movie: {movie.title}</h3>
         </div>
       ) : (
         <p>Loading movie details...</p>

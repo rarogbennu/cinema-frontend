@@ -2,6 +2,7 @@ import "./App.css";
 import Layout from "./components/navigation/Layout";
 import { Route, Routes } from "react-router-dom";
 import CinemaList from "./components/cinema/CinemaList";
+import Cinema from "./components/cinema/Cinema";
 import MoviesLayout from "./components/movie/MoviesLayout";
 import Movie from "./components/movie/Movie";
 import Home from "./components/navigation/Home";
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cinemas/" element={<CinemaList />} />
+            <Route path="/:id" element={<Cinema />} />
           <Route path="/movies" element={<MoviesLayout />}>
             <Route path=":id" element={<Movie />} />
           </Route>

@@ -19,10 +19,10 @@ export default function MovieList() {
 
     fetchMovies();
   }, []);
-
+  
     const movieListItems = movies.map((movie) => {
       return (
-        <li key={movie.imdbID}>
+        <li key={movie.id}>
           <Link to={`${movie.id}`}>{movie.Title}</Link>
           <p>{movie.Director}</p>
         </li>

@@ -7,30 +7,26 @@ export default function Cinema() {
 
   const [cinema, setCinema] = useState<ApiCinema | null>(null);
   useEffect(() => {
-    getCinema(Number(id)).then((res) => setCinema(res));
+    getCinema(Number(id)).then((res) => {
+      console.log(res); // Log the data response here
+      setCinema(res);
+    });
   }, [id]);
 
   return (
-    <>
+    <div>
       {cinema ? (
-        <>
-          <h3>
-            {" "}
-            {cinema.name} ({cinema.id})
-          </h3>
-          <div>
-            {/* <ul>
-              navngiv evt til activeScreenings...
-              {cinema.activeMovies.map((activeMovie: Movie) => (
-                <li key={activeMovie.id}>{activeMovie.name}</li>
-              ))}
-            </ul> */}
-          </div>
-          <hr />{" "}
-        </>
+        <div>
+          <h3>{cinema.name}</h3>
+          <p>{cinema.location}</p>
+        </div>
       ) : (
-        <h2>Looking for cinema... Try refreshing page if it takes long</h2>
+        <h2>Sorry. Cinema not found</h2>
       )}
-    </>
+    </div>
   );
 }
+
+
+// get movies for cinema by screening id -> screen.id -> cinema.id
+// show movie poster cards with titel and -> screeningcards with date and time

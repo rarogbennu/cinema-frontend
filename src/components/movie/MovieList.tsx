@@ -21,11 +21,11 @@ export default function MovieList() {
   }, []);
 
     const movieListItems = movies.map((movie) => {
-      // @ts-ignore
+  
       return (
         <li key={movie.id}>
-          <Link to={`${movie.id}`}>{movie.Title}</Link>
-          <p>{movie.Director}</p>
+          <Link to={`${movie.id}`}>{movie.title}</Link>
+          <p>{movie.director}</p>
         </li>
       );
     });

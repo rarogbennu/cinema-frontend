@@ -33,3 +33,7 @@
 .navbar ul li a.active {
   text-decoration: underline;
 }
+
+.popping {
+  height: 30px;
+}

@@ -7,24 +7,29 @@ export default function Home() {
 
   return (
     <>
-      <h1>Velkommen til ROLF* Kino</h1>
-      <p>*rolling on laughing floors</p>
-      <div className="cinemas-home-container">
-        <Link to="/cinemas/2" className="card-button">
-          Roskilde Bio
-        </Link>
-        <Link to="/cinemas/1" className="card-button">
-          KBH Bio
-        </Link>
-      </div>
-      <div className="button-container">
-        <button
-          className="button-of-joy"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Klik HER, hvis du havde en god oplevelse❤️!!!!
-        </button>
-        <p>Gode oplevelser: {count} </p>
+      <div className="center">
+        <h1>Velkommen til ROLF* Kino</h1>
+        <p>*rolling on laughing floors</p>
+        <div className="cinemas-home-container">
+          <Link to="/cinema/roskilde" className="card-button">
+            Roskilde <br />
+            Bio
+          </Link>
+          <Link to="/cinema/kbh" className="card-button">
+            København <br />
+            Bio
+          </Link>
+        </div>
+        <div className="button-container">
+          <button
+            className="button-of-joy"
+            onClick={() => setCount((count) => count + 1)}
+          >
+            God oplevelse? <br />
+            Klik HER❤️
+          </button>
+          <p>Gode oplevelser: {count} </p>
+        </div>
       </div>
     </>
   );

@@ -1,40 +1,38 @@
-// import { useEffect, useState } from "react";
-// import { getAllScreenings, getMovie, Screening as APIScreening } from "../../services/apiFacade";
-// import "./ScreeningLayout.css";
+import { useEffect, useState } from "react";
+import { getAllScreenings, Screening as APIScreening } from "../../services/apiFacade";
+import "./ScreeningLayout.css";
 
-// export default function ScreeningsComponent() {
-//   const [screenings, setScreenings] = useState<Array<APIScreening>>([]);
-//   const [error, setError] = useState("");
+export default function ScreeningsComponent() {
+  const [screenings, setScreenings] = useState<Array<APIScreening>>([]);
+  const [error, setError] = useState("");
 
-//   useEffect(() => {
-//     const fetchScreenings = async () => { 
-//       try {
-//         const screenings = await getAllScreenings(); 
-//         setScreenings(screenings);
-//       } catch (error) {
-//         setError("Error loading screenings, is the server running?");
-//       }
-//     };
+  useEffect(() => {
+    const fetchScreenings = async () => { 
+      try {
+        const screenings = await getAllScreenings(); 
+        setScreenings(screenings);
+      } catch (error) {
+        setError("Error loading screenings, is the server running?");
+      }
+    };
 
-//     fetchScreenings();
-//   }, []);
+    fetchScreenings();
+  }, []);
 
-//   return (
-//     <div>
-//       {error && <p>{error}</p>}
-//       <h2>Screenings</h2>
-//       <div className="screenings-container">
-//         {screenings.map((screening) => (
-//           <div key={screening.id} className="screening-card">
-//             <p>Screen ID: {screening.screenId}</p>
-//             <p>Movie ID: {screening.movieId}</p> {/* Add movie ID */}
-//             <MovieDetails movieId={screening.movieId} /> {/* Pass movie ID to MovieDetails component */}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      {error && <p>{error}</p>}
+      <h2>Screenings</h2>
+      <div className="screenings-container">
+        {screenings.map((screening) => (
+          <div key={screening.id} className="screening-card">
+            <p>Screen ID: {screening.screenId}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // function MovieDetails({ movieId }: { movieId: number }) {
 //   const [movie, setMovie] = useState<Movie | null>(null);

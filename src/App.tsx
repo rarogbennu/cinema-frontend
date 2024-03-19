@@ -2,9 +2,15 @@ import "./App.css";
 import Layout from "./components/navigation/Layout";
 import { Route, Routes } from "react-router-dom";
 import CinemaList from "./components/cinema/CinemaList";
+import Cinema from "./components/cinema/Cinema";
 import MoviesLayout from "./components/movie/MoviesLayout";
 import Movie from "./components/movie/Movie";
 import Home from "./components/navigation/Home";
+import LoginComponent from "./security/LoginComponent";
+import LogoutComponent from "./security/LogoutComponent.tsx";
+import RequireAuth from "./security/RequireAuth.tsx";
+import ScreeningsComponent from "./components/screenings/ScreeningComponent.tsx";
+
 
 function App() {
   return (
@@ -13,29 +19,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cinemas/" element={<CinemaList />} />
+            <Route path="/:id" element={<Cinema />} />
           <Route path="/movies" element={<MoviesLayout />}>
             <Route path=":id" element={<Movie />} />
           </Route>
-          <Route
-            path="/add"
-            element={<h2>Not implemented</h2>}
-            // element={
-            //   // <RequireAuth roles={["ADMIN"]}>
-            //   // <ChangeUsers />
-            //   // </RequireAuth>
-            // }
-          />
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/logout" element={<Logout />} /> */}
-          <Route
-            path="*"
-            element={
-              <h2>
-                Side ikke fundet <br />
-                <a href="/">Gå til forside</a>
-              </h2>
-            }
-          />
+          <Route path="/screenings" element={<ScreeningsComponent />}>
+
+          </Route>
+          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/logout" element={<LogoutComponent />} />
+          <Route path="/add" 
+            element={    
+              <RequireAuth roles={["ADMIN"]}>
+                <p>Only for admins</p>
+              </RequireAuth>} />
         </Routes>
       </Layout>
     </>

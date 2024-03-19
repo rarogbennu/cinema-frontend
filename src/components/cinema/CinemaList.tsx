@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCinemas, Cinema } from "../../services/apiFacade";
+import { getAllCinemas, Cinema, } from "../../services/apiFacade";
 
 export default function CinemaList() {
   const [cinemas, setCinemas] = useState<Cinema[] | null>(null);

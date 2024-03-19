@@ -19,8 +19,9 @@ export default function MovieList() {
 
     fetchMovies();
   }, []);
-  
+
     const movieListItems = movies.map((movie) => {
+      // @ts-ignore
       return (
         <li key={movie.id}>
           <Link to={`${movie.id}`}>{movie.Title}</Link>

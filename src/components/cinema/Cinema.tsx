@@ -37,6 +37,8 @@ export default function Cinema() {
       }
     };
 
+    //gotta test
+
     fetchScreenings();
   }, [cinema]);
 

@@ -8,7 +8,7 @@ export default function MoviesLayout() {
 
   return (
     <div style={{ display: "flex" }}>
-      <div style={{ flex: 1, flexDirection: "column" }}>
+      <div className="movie-selection-list-container">
         <MovieList />
       </div>
       <div className="outlet-container">

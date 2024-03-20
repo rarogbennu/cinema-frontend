@@ -11,11 +11,11 @@ export default function Home() {
         <h1>Velkommen til ROLF* Kino</h1>
         <p>*rolling on laughing floors</p>
         <div className="cinemas-home-container">
-          <Link to="/cinema/roskilde" className="card-button">
+          <Link to="/cinemas/2" className="card-button">
             Roskilde <br />
             Bio
           </Link>
-          <Link to="/cinema/kbh" className="card-button">
+          <Link to="/cinemas/1" className="card-button">
             København <br />
             Bio
           </Link>

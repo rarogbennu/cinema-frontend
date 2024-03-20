@@ -1,7 +1,7 @@
 .movie-btn {
   padding: 0px 3px;
   margin-left: 5px;
-  background-color: darkgreen;
+  background-color: var(--kinocoral);
   font-size: small;
   color: white;
   text-decoration: none;

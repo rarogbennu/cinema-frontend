@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import "./MoviesLayout.css";
+import "./moviesLayout.css";
+import "./movieList.css";
 import { useEffect, useState } from "react";
 import { getAllMovies, Movie as APIMovie } from "../../services/apiFacade";
 
@@ -8,9 +9,9 @@ export default function MovieList() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchMovies = async () => { 
+    const fetchMovies = async () => {
       try {
-        const movies = await getAllMovies(); 
+        const movies = await getAllMovies();
         setMovies(movies);
       } catch (error) {
         setError("Error loading movies, is the server running?");
@@ -19,22 +20,25 @@ export default function MovieList() {
 
     fetchMovies();
   }, []);
-  
-    const movieListItems = movies.map((movie) => {
-      return (
-        <li key={movie.id}>
-          <Link to={`${movie.id}`}>{movie.Title}</Link>
-        </li>
-      );
-    });
 
-    if (error !== "") {
-      return <h2 style={{ color: "red" }}>{error}</h2>;
-    }
+  const movieListItems = movies.map((movie) => {
     return (
-      <>
-        <h3>Movies</h3>
-        <ul style={{ listStyle: "none", paddingLeft: 0 }}>{movieListItems}</ul>
-      </>
+      <li key={movie.id}>
+        <Link to={`${movie.id}`}>
+          <img className="movie-poster-on-list" src={movie.Poster} alt="" />
+          <br />
+          {movie.Title}
+        </Link>
+      </li>
     );
+  });
+
+  if (error !== "") {
+    return <h2 style={{ color: "red" }}>{error}</h2>;
+  }
+  return (
+    <>
+      <ul style={{ listStyle: "none", paddingTop: "1em" }}>{movieListItems}</ul>
+    </>
+  );
 }

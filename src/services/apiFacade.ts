@@ -7,7 +7,7 @@ const SEAT_URL = API_URL + "/seats";
 const SCREENING_URL = API_URL + "/screenings";
 const MOVIE_URL = API_URL + "/movies";
 const RESERVATION_URL = API_URL + "/reservations";
-const BOOKING_URL = API_URL + "/bookings";
+const TOTAL_RESERVATION_URL = API_URL + "/total-reservations";
 
 
 interface Cinema {
@@ -85,7 +85,7 @@ interface Reservation {
   edited?: string;
 }
 
-interface Booking {
+interface TotalReservation {
   id: number;
   created?: string;
   edited?: string;
@@ -97,7 +97,7 @@ let seat: Seat[] = [];
 let screening: Screening[] = [];
 let movie: Movie[] = [];
 let reservation: Reservation[] = [];
-let booking: Booking[] = [];
+let totalReservation: TotalReservation[] = [];
 
 // Get Cinemas
 async function getAllCinemas(): Promise<Cinema[]> {
@@ -133,6 +133,12 @@ async function getAllSeats(): Promise<Seat[]> {
 
 async function getSeat(id: number): Promise<Seat> {
   return fetch(SEAT_URL + "/" + id).then(handleHttpErrors);
+}
+
+// Get Seat By Screen ID
+async function getSeatsByScreenId(screenId: number): Promise<Seat[]> {
+  const res = await fetch(`${SEAT_URL}/screen/${screenId}`).then(handleHttpErrors);
+  return res;
 }
 
 // Get All Screenings
@@ -179,27 +185,29 @@ async function deleteReservation(id: number): Promise<void> {
 }
 
 // Get Total Reservations
-async function getAllBookings(): Promise<Booking[]> {
-  if (booking.length > 0) return [...booking];
-  const res = await fetch(BOOKING_URL).then(handleHttpErrors);
-  booking = [...res];
-  return booking;
+
+// Get Total Reservations
+async function getAllTotalReservations(): Promise<TotalReservation[]> {
+  if (totalReservation.length > 0) return [...totalReservation];
+  const res = await fetch(TOTAL_RESERVATION_URL).then(handleHttpErrors); // Updated URL
+  totalReservation = [...res];
+  return totalReservation;
 }
 
-async function getBooking(id: number): Promise<Booking> {
-  return fetch(BOOKING_URL + "/" + id).then(handleHttpErrors);
+async function getTotalReservation(id: number): Promise<TotalReservation> {
+  return fetch(TOTAL_RESERVATION_URL + "/" + id).then(handleHttpErrors); // Updated URL
 }
 
 // Create Total Reservation 
-async function createBooking(newBooking: Booking): Promise<Booking> {
-  const options = makeOptions("POST", newBooking, true); 
-  return fetch(BOOKING_URL, options).then(handleHttpErrors);
+async function createTotalReservation(newTotalReservation: TotalReservation): Promise<TotalReservation> {
+  const options = makeOptions("POST", newTotalReservation, true); 
+  return fetch(TOTAL_RESERVATION_URL, options).then(handleHttpErrors); // Updated URL
 }
 
 // Delete Total Reservation 
-async function deleteBooking(id: number): Promise<void> {
+async function deleteTotalReservation(id: number): Promise<void> {
   const options = makeOptions("DELETE", null, true);
-  await fetch(`${BOOKING_URL}/${id}`, options).then(handleHttpErrors);
+  await fetch(`${TOTAL_RESERVATION_URL}/${id}`, options).then(handleHttpErrors);
   console.log("Booking with id: " + id + " has been deleted");
 }
 
@@ -252,8 +260,8 @@ async function getAllData(): Promise<void> {
     const reservations = await getAllReservations();
     console.log("Reservations:", reservations);
 
-    const bookings = await getAllBookings();
-    console.log("Total Bookings:", bookings);
+    const totalReservations = await getAllTotalReservations();
+    console.log("Total Bookings:", totalReservations);
 
     const movies = await getAllMovies();
     console.log("Movies:", movies);
@@ -272,6 +280,7 @@ export {  getAllCinemas,
           getScreen,
           getAllSeats,
           getSeat,
+          getSeatsByScreenId,
           getAllScreenings,
           getScreening,
           getScreeningsByCinemaId,
@@ -279,10 +288,10 @@ export {  getAllCinemas,
           getReservation,
           createReservation,
           deleteReservation,
-          getAllBookings,
-          getBooking, 
-          createBooking,
-          deleteBooking,
+          getAllTotalReservations,
+          getTotalReservation,
+          createTotalReservation,
+          deleteTotalReservation,
           getAllMovies,
           getMovie,
           addMovie, 

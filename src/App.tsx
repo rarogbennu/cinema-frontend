@@ -9,7 +9,8 @@ import Home from "./components/navigation/Home";
 import LoginComponent from "./security/LoginComponent";
 import LogoutComponent from "./security/LogoutComponent.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
-import ScreeningsComponent from "./components/screenings/ScreeningComponent.tsx";
+import ReservationComponent from "./components/reservations/ReservationComponent.tsx";
+// import ScreeningsComponent from "./components/screenings/ScreeningComponent.tsx";
 
 
 function App() {
@@ -23,9 +24,7 @@ function App() {
           <Route path="/movies" element={<MoviesLayout />}>
             <Route path=":id" element={<Movie />} />
           </Route>
-          <Route path="/screenings" element={<ScreeningsComponent />}>
-
-          </Route>
+          <Route path="/screenings/:id" element={<ReservationComponent />} /> 
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/logout" element={<LogoutComponent />} />
           <Route path="/add" 

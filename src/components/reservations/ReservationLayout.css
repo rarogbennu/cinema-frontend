@@ -1,0 +1,30 @@
+.board-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.seats-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: 10px;
+}
+
+.seat {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: lightgreen;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  color: #fff;
+  background-color: black;
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

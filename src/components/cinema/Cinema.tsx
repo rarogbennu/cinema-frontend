@@ -59,7 +59,7 @@ export default function Cinema() {
                   {screenings
                     .filter(screening => screening.movieId === movie.id)
                     .map(screening => (
-                      <Link key={screening.id} to={`/reservations/${screening.id}`}>
+                      <Link key={screening.id} to={`/screenings/${screening.id}`}>
                         <button>{new Date(screening.date).toLocaleString()}</button>
                       </Link>
                     ))}
@@ -72,6 +72,3 @@ export default function Cinema() {
     </>
   );
 }
-
-// get movies for cinema by screening id -> screen.id -> cinema.id
-// show movie poster cards with titel and -> screeningcards with date and time

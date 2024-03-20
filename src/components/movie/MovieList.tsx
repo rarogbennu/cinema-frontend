@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./moviesLayout.css";
+import "./movieLayout.css";
 import "./movieList.css";
 import { useEffect, useState } from "react";
 import { getAllMovies, Movie as APIMovie } from "../../services/apiFacade";

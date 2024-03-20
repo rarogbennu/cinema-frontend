@@ -1,6 +1,6 @@
 import { Outlet, useOutlet } from "react-router-dom";
 import MovieList from "./MovieList";
-import "./MoviesLayout.css";
+import "./moviesLayout.css";
 //import { useAuth } from "../security/_Authprovider";
 
 export default function MoviesLayout() {

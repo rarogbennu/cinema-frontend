@@ -1,7 +1,7 @@
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getScreening, getScreen, getSeatsByScreenId, getReservationsByScreeningId, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat, Reservation as ApiReservation } from "../../services/apiFacade.ts";
+import { getScreening, getScreen, getSeatsByScreenId, getReservationsByScreeningId, getAllPriceCategories, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat, Reservation as ApiReservation, PriceCategory as ApiPriceCategory } from "../../services/apiFacade.ts";
 import "./ReservationLayout.css";
 
 export default function ReservationComponent() {
@@ -11,6 +11,7 @@ export default function ReservationComponent() {
   const [screen, setScreen] = useState<ApiScreen | null>(null);
   const [seats, setSeats] = useState<ApiSeat[]>([]);
   const [reservations, setReservations] = useState<ApiReservation[]>([]);
+  const [priceCategory, setPriceCategory] = useState<ApiPriceCategory[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
   useEffect(() => {
@@ -28,6 +29,10 @@ export default function ReservationComponent() {
         const reservationDetails: ApiReservation[] = await getReservationsByScreeningId(screeningDetails.id);
         setReservations(reservationDetails);
         console.log(reservationDetails);
+
+        const priceCategoryDetails: ApiPriceCategory[] = await getAllPriceCategories();
+        setPriceCategory(priceCategoryDetails);
+        console.log(priceCategoryDetails);
 
       } catch (error) {
         console.error("Error fetching screening and screen details:", error);
@@ -49,6 +54,13 @@ export default function ReservationComponent() {
     }
     console.log(`Seat ${seatId} clicked`);
   };
+
+  const totalPrice = selectedSeats.reduce((total, seatId) => {
+    const seat = seats.find(seat => seat.id === seatId);
+    const seatPriceCategory = priceCategory.find(category => category.id === seat?.priceCategoryId);
+    const price = seatPriceCategory ? seatPriceCategory.price : 0; // Assuming default price is 0 if category not found
+    return total + price;
+  }, 0);
 
   return (
     <>
@@ -77,12 +89,25 @@ export default function ReservationComponent() {
       </div>
       <div className="board-reservation">
         <h3>Reservation Details</h3>
-        <p>Selected Seats: {selectedSeats.join(", ")}</p>
+        <p>Selected Seats:</p>
+        <ul>
+          {selectedSeats.map((seatId, index) => {
+            const seat = seats.find(seat => seat.id === seatId);
+            const seatPriceCategory = priceCategory.find(category => category.id === seat?.priceCategoryId);
+            const price = seatPriceCategory ? seatPriceCategory.price : 0; // Assuming default price is 0 if category not found
+            return (
+              <li key={index}>
+                Seat {seatId} - Price: {price}
+              </li>
+            );
+          })}
+        </ul>
+        <p>Total Price: {totalPrice}</p>
         <button className="reservation-button">Reserve</button>
       </div>
+
     </div>  
     </>
-
   );
 }
 

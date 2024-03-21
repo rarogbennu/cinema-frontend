@@ -1,14 +1,28 @@
 .board-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 5fr 1fr;
   align-items: center;
   gap: 20px;
+}
+
+.board-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-reservation {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .seats-grid {
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     gap: 10px;
+    margin: 20px;
 }
 
 .seat {
@@ -35,4 +49,5 @@
   font-size: 10px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin: 10px;
 }

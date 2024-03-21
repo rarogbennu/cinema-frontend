@@ -304,7 +304,7 @@ async function getAllData(): Promise<void> {
 
 getAllData();
 
-export type { Movie, Cinema, Screen, Seat, Screening, Reservation };
+export type { Movie, Cinema, Screen, Seat, Screening, Reservation, TotalReservation, PriceCategory};
 // eslint-disable-next-line react-refresh/only-export-components
 export {  getAllCinemas,
           getCinema, 

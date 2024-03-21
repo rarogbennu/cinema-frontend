@@ -34,6 +34,7 @@ interface Seat {
 interface Screening {
   id: number;
   movieId: number;
+  cinemaId: number;
   screenId: number;
   date: string;
   is3D: boolean;
@@ -91,6 +92,14 @@ interface TotalReservation {
   edited?: string;
 }
 
+interface PriceCategory {
+  id: number;
+  name: string;
+  price: number;
+  additional3DCost: number;
+  additionalLongMovieCost: number;
+}
+
 let cinema: Cinema[] = [];
 let screen: Screen[] = [];
 let seat: Seat[] = [];
@@ -98,6 +107,7 @@ let screening: Screening[] = [];
 let movie: Movie[] = [];
 let reservation: Reservation[] = [];
 let totalReservation: TotalReservation[] = [];
+let priceCategory: PriceCategory[] = [];
 
 // Get Cinemas
 async function getAllCinemas(): Promise<Cinema[]> {
@@ -250,6 +260,13 @@ async function deleteMovie(imdbID: string): Promise<Movie> {
   return fetch(`${MOVIE_URL}/${imdbID}`, options).then(handleHttpErrors);
 }
 
+async function getAllPriceCategories(): Promise<PriceCategory[]> {
+  if (priceCategory.length > 0) return [...priceCategory];
+  const res = await fetch(API_URL + "/price-categories").then(handleHttpErrors);
+  priceCategory = [...res];
+  return priceCategory;
+}
+
 // Get All Data
 async function getAllData(): Promise<void> {
   try {
@@ -277,6 +294,9 @@ async function getAllData(): Promise<void> {
 
     const movies = await getAllMovies();
     console.log("Movies:", movies);
+
+    const priceCategories = await getAllPriceCategories();
+    console.log("Price Categories:", priceCategories);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -284,7 +304,7 @@ async function getAllData(): Promise<void> {
 
 getAllData();
 
-export type { Movie, Cinema, Screen, Seat, Screening, Reservation };
+export type { Movie, Cinema, Screen, Seat, Screening, Reservation, TotalReservation, PriceCategory};
 // eslint-disable-next-line react-refresh/only-export-components
 export {  getAllCinemas,
           getCinema, 
@@ -308,5 +328,6 @@ export {  getAllCinemas,
           getAllMovies,
           getMovie,
           addMovie, 
-          deleteMovie
+          deleteMovie,
+          getAllPriceCategories
         };

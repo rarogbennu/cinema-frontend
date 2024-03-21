@@ -59,8 +59,8 @@ export default function ReservationComponent() {
 
   const handleReserveClick = () => {
     console.log("Selected Seats:", selectedSeats);
-    // Navigate to TotalReservationComponent with selectedSeats as a query parameter
-    navigate(`/total-reservations?selectedSeats=${selectedSeats.join(',')}`);
+    // Navigate to TotalReservationComponent with selectedSeats and screeningId as query parameters
+    navigate(`/total-reservations?selectedSeats=${selectedSeats.join(',')}&screeningId=${id}`);
   };
 
   const totalPrice = selectedSeats.reduce((total, seatId) => {
@@ -111,13 +111,11 @@ export default function ReservationComponent() {
           })}
         </ul>
         <p>Total Price: {totalPrice}</p>
-          <Link to={`/total-reservations?selectedSeats=${selectedSeats.join(',')}`}>
-            <button className="reservation-button" onClick={handleReserveClick}>Reserve</button>
-          </Link>
+        <Link to={`/total-reservations?selectedSeats=${selectedSeats.join(',')}&screeningId=${id}`}>
+          <button className="reservation-button" onClick={handleReserveClick}>Reserve</button>
+        </Link>
       </div>
     </div>  
     </>
   );
 }
-
-// test

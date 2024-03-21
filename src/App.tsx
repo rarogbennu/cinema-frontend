@@ -11,7 +11,6 @@ import LogoutComponent from "./security/LogoutComponent.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
 import ReservationComponent from "./components/reservations/ReservationComponent.tsx";
 import TotalReservationComponent from "./components/totalReservations/TotalReservationComponent.tsx";
-// import ScreeningsComponent from "./components/screenings/ScreeningComponent.tsx";
 
 
 function App() {

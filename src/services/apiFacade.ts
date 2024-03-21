@@ -175,6 +175,11 @@ async function getReservation(id: number): Promise<Reservation> {
   return fetch(RESERVATION_URL + "/" + id).then(handleHttpErrors);
 }
 
+async function getReservationsByScreeningId(screeningId: number): Promise<Reservation[]> {
+  const res = await fetch(`${RESERVATION_URL}/screening/${screeningId}`).then(handleHttpErrors);
+  return res;
+}
+
 // Create Reservation
 async function createReservation(
   newReservation: Reservation
@@ -281,27 +286,27 @@ getAllData();
 
 export type { Movie, Cinema, Screen, Seat, Screening, Reservation };
 // eslint-disable-next-line react-refresh/only-export-components
-export {
-  getAllCinemas,
-  getCinema,
-  getAllScreens,
-  getScreen,
-  getAllSeats,
-  getSeat,
-  getSeatsByScreenId,
-  getAllScreenings,
-  getScreening,
-  getScreeningsByCinemaId,
-  getAllReservations,
-  getReservation,
-  createReservation,
-  deleteReservation,
-  getAllTotalReservations,
-  getTotalReservation,
-  createTotalReservation,
-  deleteTotalReservation,
-  getAllMovies,
-  getMovie,
-  addMovie,
-  deleteMovie,
-};
+export {  getAllCinemas,
+          getCinema, 
+          getAllScreens, 
+          getScreen,
+          getAllSeats,
+          getSeat,
+          getSeatsByScreenId,
+          getAllScreenings,
+          getScreening,
+          getScreeningsByCinemaId,
+          getAllReservations,
+          getReservation,
+          getReservationsByScreeningId,
+          createReservation,
+          deleteReservation,
+          getAllTotalReservations,
+          getTotalReservation,
+          createTotalReservation,
+          deleteTotalReservation,
+          getAllMovies,
+          getMovie,
+          addMovie, 
+          deleteMovie
+        };

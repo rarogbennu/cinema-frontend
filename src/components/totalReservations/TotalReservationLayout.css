@@ -1,0 +1,62 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px; /* Extra padding for ultimate softness uWu */
+  background-color: #fce4ec; /* Super soft pink */
+  border-radius: 40px; /* Even softer corners */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1); /* Ultra-soft shadow uWu */
+}
+
+h2 {
+  font-size: 36px; /* Maximum cuteness level uWu */
+  color: #ff80ab; /* Pink */
+}
+
+h3 {
+  font-size: 32px; /* Maximum cuteness level uWu */
+  color: #6f4e7c; /* Lavender */
+  margin-top: 40px; /* More space for extra softness uWu */
+}
+
+div {
+  margin-top: 30px; /* More space for extra softness uWu */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  padding: 16px 32px; /* Maximum softness level uWu */
+  background-color: #ff80ab; /* Pink */
+  color: white;
+  border: none;
+  border-radius: 40px; /* Even softer buttons uWu */
+  cursor: pointer;
+  margin-right: 20px; /* A little more space between elements uWu */
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff527b; /* Lighter pink uWu */
+}
+
+input[type="email"] {
+  padding: 16px; /* Maximum softness level uWu */
+  border: 1px solid #ccc;
+  border-radius: 40px; /* Even softer input fields uWu */
+}
+
+p {
+  margin-top: 20px; /* More space for extra softness uWu */
+  font-size: 24px; /* Maximum cuteness level uWu */
+  color: #9b4d9e; /* Lilac */
+}
+
+/* Super kawaii hover effect uWu */
+button:hover,
+input[type="email"]:hover {
+  transform: translateY(-3px); /* A little lift when hovered uWu */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Ultra-soft shadow for extra kawaii-ness uWu */
+}

@@ -17,6 +17,14 @@
   background-color: lightgreen;
 }
 
+.reserved {
+  background-color: rgb(245, 140, 140);
+}
+
+.selected {
+  background-color: rgb(97, 97, 226);
+}
+
 .screen {
   display: flex;
   justify-content: center;

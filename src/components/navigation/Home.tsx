@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="center">
-        <h1>Velkommen til ROLF* Kino</h1>
+        <h1>Velkommen til TEST* Kino</h1>
         <p>*rolling on laughing floors</p>
         <div className="cinemas-home-container">
           <Link to="/cinemas/2" className="card-button">

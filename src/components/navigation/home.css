@@ -7,6 +7,7 @@
   justify-content: center;
   position: absolute;
   margin: auto;
+  height: 140%;
   top: 0;
   right: 0;
   bottom: 0;
@@ -89,4 +90,9 @@
 .button-of-joy:focus,
 .button-of-joy:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button-of-joy:active {
+  border-color: var(--kinocoral);
+  box-shadow: 0 0 1em var(--kinoblue) inset;
 }

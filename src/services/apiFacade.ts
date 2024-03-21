@@ -80,7 +80,7 @@ interface Reservation {
   id: number;
   screeningId: number;
   seatId: number;
-  bookingId: number;
+  totalReservationId: number;
   dummyUser: string;
   created?: string;
   edited?: string;

@@ -175,6 +175,13 @@ async function getReservation(id: number): Promise<Reservation> {
   return fetch(RESERVATION_URL + "/" + id).then(handleHttpErrors);
 }
 
+async function getReservationsByScreeningId(screeningId: number): Promise<Reservation[]> {
+  const res = await fetch(`${RESERVATION_URL}/screening/${screeningId}`).then(
+    handleHttpErrors
+  );
+  return res;
+}
+
 // Create Reservation
 async function createReservation(
   newReservation: Reservation
@@ -294,6 +301,7 @@ export {
   getScreeningsByCinemaId,
   getAllReservations,
   getReservation,
+  getReservationsByScreeningId,
   createReservation,
   deleteReservation,
   getAllTotalReservations,

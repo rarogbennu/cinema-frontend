@@ -1,7 +1,7 @@
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getScreening, getScreen, getSeatsByScreenId, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat } from "../../services/apiFacade.ts";
+import { getScreening, getScreen, getSeatsByScreenId, getReservationsByScreeningId, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat, Reservation as ApiReservation } from "../../services/apiFacade.ts";
 import "./ReservationLayout.css";
 
 export default function ReservationComponent() {
@@ -10,9 +10,10 @@ export default function ReservationComponent() {
   const [screening, setScreening] = useState<ApiScreening | null>(null);
   const [screen, setScreen] = useState<ApiScreen | null>(null);
   const [seats, setSeats] = useState<ApiSeat[]>([]);
+  const [reservations, setReservations] = useState<ApiReservation[]>([]);
 
   useEffect(() => {
-    const fetchScreeningAndScreen = async () => {
+    const fetchData = async () => {
       try {
         const screeningDetails: ApiScreening = await getScreening(Number(id));
         setScreening(screeningDetails);
@@ -22,12 +23,17 @@ export default function ReservationComponent() {
 
         const seatDetails: ApiSeat[] = await getSeatsByScreenId(screenDetails.id);
         setSeats(seatDetails);
+
+        const reservationDetails: ApiReservation[] = await getReservationsByScreeningId(screeningDetails.id);
+        setReservations(reservationDetails);
+        console.log(reservationDetails);
+
       } catch (error) {
         console.error("Error fetching screening and screen details:", error);
       }
     };
 
-    fetchScreeningAndScreen();
+    fetchData();
   }, [id]);
 
   return (
@@ -37,6 +43,16 @@ export default function ReservationComponent() {
       {screen && <p>Screen: {screen.name}</p>}
       {screen && <p>Rows: {screen.rows}</p>}
       {screen && <p>Capacity: {screen.capacity}</p>}
+
+      <h3>Reservations</h3>
+        {reservations.map((reservation) => (
+          <li key={reservation.id}>
+            <p>Reservation ID: {reservation.id}</p>
+            <p>Seat ID: {reservation.seatId}</p>
+            <p>Customer Name: {reservation.dummyUser}</p>
+          </li>
+        ))}
+
       <h3>Seats</h3>
       <div className="screen"><p>Screen</p></div>
       {screen && (
@@ -50,5 +66,4 @@ export default function ReservationComponent() {
       )}
     </>
   );
-  
 }

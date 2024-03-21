@@ -31,7 +31,7 @@ function App() {
             element={    
               <RequireAuth roles={["ADMIN"]}>
                 <p>Only for admins</p>
-              </RequireAuth>} />
+              </RequireAuth>} />   
         </Routes>
       </Layout>
     </>

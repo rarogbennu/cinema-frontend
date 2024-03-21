@@ -52,6 +52,8 @@ export default function ReservationComponent() {
 
   return (
     <>
+    <div className="board-container">
+      <div className="board-screen">
       <h3>Screening Details</h3>
       {screening && <p>Date: {screening.date}</p>}
       {screen && <p>Screen: {screen.name}</p>}
@@ -72,7 +74,15 @@ export default function ReservationComponent() {
           ))}
         </div>
       )}
+      </div>
+      <div className="board-reservation">
+        <h3>Reservation Details</h3>
+        <p>Selected Seats: {selectedSeats.join(", ")}</p>
+        <button className="reservation-button">Reserve</button>
+      </div>
+    </div>  
     </>
+
   );
 }
 

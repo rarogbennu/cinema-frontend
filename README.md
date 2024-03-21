@@ -1,3 +1,5 @@
+[![Azure Static Web Apps CI/CD](https://github.com/rarogbennu/cinema-frontend/actions/workflows/azure-static-web-apps-thankful-pond-0d3649203.yml/badge.svg)](https://github.com/rarogbennu/cinema-frontend/actions/workflows/azure-static-web-apps-thankful-pond-0d3649203.yml)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

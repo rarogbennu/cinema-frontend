@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": " https://rarogbennu.github.io/cinema-frontend/",
+  "homepage": " https://thankful-pond-0d3649203.4.azurestaticapps.net/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

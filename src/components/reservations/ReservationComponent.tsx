@@ -103,11 +103,10 @@ export default function ReservationComponent() {
           })}
         </ul>
         <p>Total Price: {totalPrice}</p>
-          <Link to="/total-reservation">
+          <Link to="/total-reservations">
             <button className="reservation-button">Reserve</button>
           </Link>
       </div>
-
     </div>  
     </>
   );

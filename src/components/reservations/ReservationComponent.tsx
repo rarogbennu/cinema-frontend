@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getScreening, getScreen, getSeatsByScreenId, getReservationsByScreeningId, getAllPriceCategories, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat, Reservation as ApiReservation, PriceCategory as ApiPriceCategory } from "../../services/apiFacade.ts";
@@ -103,7 +103,9 @@ export default function ReservationComponent() {
           })}
         </ul>
         <p>Total Price: {totalPrice}</p>
-        <button className="reservation-button">Reserve</button>
+          <Link to="/total-reservation">
+            <button className="reservation-button">Reserve</button>
+          </Link>
       </div>
 
     </div>  

@@ -32,6 +32,12 @@ export default function NavHeader() {
             <NavLink to="/add">Edit users</NavLink>
           </li>
         )}
+
+        {auth.isLoggedIn() && (
+            <li>
+              <NavLink to="/admin">Admin</NavLink>
+            </li>
+        )}
         <li>
           <img
             className="popping"

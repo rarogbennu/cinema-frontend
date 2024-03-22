@@ -172,6 +172,11 @@ async function getScreeningsByCinemaId(cinemaId: number): Promise<Screening[]> {
   return res;
 }
 
+async function addScreening(newScreening: Screening): Promise<Screening> {
+  const options = makeOptions("POST", newScreening, true);
+  return fetch(SCREENING_URL, options).then(handleHttpErrors);
+}
+
 // Get Reservations
 async function getAllReservations(): Promise<Reservation[]> {
   if (reservation.length > 0) return [...reservation];
@@ -184,13 +189,18 @@ async function getReservation(id: number): Promise<Reservation> {
   return fetch(RESERVATION_URL + "/" + id).then(handleHttpErrors);
 }
 
-async function getReservationsByScreeningId(screeningId: number): Promise<Reservation[]> {
-  const res = await fetch(`${RESERVATION_URL}/screening/${screeningId}`).then(handleHttpErrors);
+async function getReservationsByScreeningId(
+  screeningId: number
+): Promise<Reservation[]> {
+  const res = await fetch(`${RESERVATION_URL}/screening/${screeningId}`).then(
+    handleHttpErrors
+  );
   return res;
 }
 
 // Create Reservation
-async function createReservation(reservations: Reservation[]
+async function createReservation(
+  reservations: Reservation[]
 ): Promise<Reservation[]> {
   const options = makeOptions("POST", reservations, true);
   return fetch(RESERVATION_URL, options).then(handleHttpErrors);
@@ -202,8 +212,6 @@ async function deleteReservation(id: number): Promise<void> {
   await fetch(`${RESERVATION_URL}/${id}`, options).then(handleHttpErrors);
   console.log("Reservation with id: " + id + " has been deleted");
 }
-
-// Get Total Reservations
 
 // Get Total Reservations
 async function getAllTotalReservations(): Promise<TotalReservation[]> {
@@ -245,10 +253,10 @@ async function getMovie(id: number): Promise<Movie> {
 }
 
 // Add Movie
-async function addMovie(newMovie: Movie): Promise<Movie> {
-  const method = newMovie.imdbID ? "PUT" : "POST";
-  const options = makeOptions(method, newMovie);
-  const URL = newMovie.imdbID ? `${MOVIE_URL}/${newMovie.imdbID}` : MOVIE_URL;
+async function addMovie(imdbID: string): Promise<Movie> {
+  const newMovie = { imdbID }; // Create an object with imdbID property
+  const options = makeOptions("POST", newMovie, true);
+  const URL = `${MOVIE_URL}/api/${imdbID}`;
   return fetch(URL, options).then(handleHttpErrors);
 }
 
@@ -302,30 +310,41 @@ async function getAllData(): Promise<void> {
 
 getAllData();
 
-export type { Movie, Cinema, Screen, Seat, Screening, Reservation, TotalReservation, PriceCategory};
+export type {
+  Movie,
+  Cinema,
+  Screen,
+  Seat,
+  Screening,
+  Reservation,
+  TotalReservation,
+  PriceCategory,
+};
 // eslint-disable-next-line react-refresh/only-export-components
-export {  getAllCinemas,
-          getCinema, 
-          getAllScreens, 
-          getScreen,
-          getAllSeats,
-          getSeat,
-          getSeatsByScreenId,
-          getAllScreenings,
-          getScreening,
-          getScreeningsByCinemaId,
-          getAllReservations,
-          getReservation,
-          getReservationsByScreeningId,
-          createReservation,
-          deleteReservation,
-          getAllTotalReservations,
-          getTotalReservation,
-          createTotalReservation,
-          deleteTotalReservation,
-          getAllMovies,
-          getMovie,
-          addMovie, 
-          deleteMovie,
-          getAllPriceCategories
-        };
+export {
+  getAllCinemas,
+  getCinema,
+  getAllScreens,
+  getScreen,
+  getAllSeats,
+  getSeat,
+  getSeatsByScreenId,
+  getAllScreenings,
+  getScreening,
+  getScreeningsByCinemaId,
+  addScreening,
+  getAllReservations,
+  getReservation,
+  getReservationsByScreeningId,
+  createReservation,
+  deleteReservation,
+  getAllTotalReservations,
+  getTotalReservation,
+  createTotalReservation,
+  deleteTotalReservation,
+  getAllMovies,
+  getMovie,
+  addMovie,
+  deleteMovie,
+  getAllPriceCategories,
+};

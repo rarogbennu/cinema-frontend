@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../security/AuthProvider";
 import { createReservation } from "../../services/apiFacade";
-import "./TotalReservationLayout.css";
 
 export default function TotalReservationComponent() {
   const location = useLocation();

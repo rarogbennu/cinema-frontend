@@ -10,8 +10,8 @@ import LoginComponent from "./security/LoginComponent";
 import LogoutComponent from "./security/LogoutComponent.tsx";
 import RequireAuth from "./security/RequireAuth.tsx";
 import ReservationComponent from "./components/reservations/ReservationComponent.tsx";
+import Admin from "./components/admin/Admin.tsx";
 import TotalReservationComponent from "./components/totalReservations/TotalReservationComponent.tsx";
-
 
 function App() {
   return (
@@ -20,19 +20,33 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cinemas/" element={<CinemaList />} />
-            <Route path="/cinemas/:id" element={<Cinema />} />
+          <Route path="/cinemas/:id" element={<Cinema />} />
           <Route path="/movies" element={<MoviesLayout />}>
             <Route path=":id" element={<Movie />} />
           </Route>
-          <Route path="/screenings/:id" element={<ReservationComponent />} /> 
-          <Route path="/total-reservations" element={<TotalReservationComponent />} /> 
+          <Route path="/screenings/:id" element={<ReservationComponent />} />
+          <Route
+            path="/total-reservations"
+            element={<TotalReservationComponent />}
+          />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/logout" element={<LogoutComponent />} />
-          <Route path="/add" 
-            element={    
+          <Route
+            path="/add"
+            element={
               <RequireAuth roles={["ADMIN"]}>
                 <p>Only for admins</p>
-              </RequireAuth>} />   
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <RequireAuth roles={["ADMIN"]}>
+                <Admin />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </Layout>
     </>

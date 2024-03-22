@@ -77,10 +77,9 @@ interface Rating {
 }
 
 interface Reservation {
-  id: number;
   screeningId: number;
   seatId: number;
-  bookingId: number;
+  totalReservationId: number;
   dummyUser: string;
   created?: string;
   edited?: string;
@@ -191,10 +190,9 @@ async function getReservationsByScreeningId(screeningId: number): Promise<Reserv
 }
 
 // Create Reservation
-async function createReservation(
-  newReservation: Reservation
-): Promise<Reservation> {
-  const options = makeOptions("POST", newReservation, true);
+async function createReservation(reservations: Reservation[]
+): Promise<Reservation[]> {
+  const options = makeOptions("POST", reservations, true);
   return fetch(RESERVATION_URL, options).then(handleHttpErrors);
 }
 

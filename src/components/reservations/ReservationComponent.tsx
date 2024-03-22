@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getScreening, getScreen, getSeatsByScreenId, getReservationsByScreeningId, getAllPriceCategories, Screening as ApiScreening, Screen as ApiScreen, Seat as ApiSeat, Reservation as ApiReservation, PriceCategory as ApiPriceCategory } from "../../services/apiFacade.ts";
 import "./ReservationLayout.css";
 
+
 export default function ReservationComponent() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [screening, setScreening] = useState<ApiScreening | null>(null);
   const [screen, setScreen] = useState<ApiScreen | null>(null);
@@ -28,11 +30,11 @@ export default function ReservationComponent() {
 
         const reservationDetails: ApiReservation[] = await getReservationsByScreeningId(screeningDetails.id);
         setReservations(reservationDetails);
-        console.log(reservationDetails);
+        // console.log(reservationDetails);
 
         const priceCategoryDetails: ApiPriceCategory[] = await getAllPriceCategories();
         setPriceCategory(priceCategoryDetails);
-        console.log(priceCategoryDetails);
+        // console.log(priceCategoryDetails);
 
       } catch (error) {
         console.error("Error fetching screening and screen details:", error);
@@ -53,6 +55,12 @@ export default function ReservationComponent() {
       setSelectedSeats([...selectedSeats, seatId]);
     }
     console.log(`Seat ${seatId} clicked`);
+  };
+
+  const handleReserveClick = () => {
+    console.log("Selected Seats:", selectedSeats);
+    // Navigate to TotalReservationComponent with selectedSeats and screeningId as query parameters
+    navigate(`/total-reservations?selectedSeats=${selectedSeats.join(',')}&screeningId=${id}`);
   };
 
   const totalPrice = selectedSeats.reduce((total, seatId) => {
@@ -94,7 +102,7 @@ export default function ReservationComponent() {
           {selectedSeats.map((seatId, index) => {
             const seat = seats.find(seat => seat.id === seatId);
             const seatPriceCategory = priceCategory.find(category => category.id === seat?.priceCategoryId);
-            const price = seatPriceCategory ? seatPriceCategory.price : 0; // Assuming default price is 0 if category not found
+            const price = seatPriceCategory ? seatPriceCategory.price : 0;
             return (
               <li key={index}>
                 Seat {seatId} - Price: {price}
@@ -103,13 +111,11 @@ export default function ReservationComponent() {
           })}
         </ul>
         <p>Total Price: {totalPrice}</p>
-          <Link to="/total-reservations">
-            <button className="reservation-button">Reserve</button>
-          </Link>
+        <Link to={`/total-reservations?selectedSeats=${selectedSeats.join(',')}&screeningId=${id}`}>
+          <button className="reservation-button" onClick={handleReserveClick}>Reserve</button>
+        </Link>
       </div>
     </div>  
     </>
   );
 }
-
-// test

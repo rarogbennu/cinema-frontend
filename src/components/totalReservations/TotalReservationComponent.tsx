@@ -84,12 +84,11 @@ export default function TotalReservationComponent() {
             <button type="submit">Confirm</button>
           </form>
         )}
-        {/* Display reservation status */}
-        {reservationStatus && <p>{reservationStatus}</p>}
-        <button>Decline</button>
-      </div>
-    </>
-  );
+          {reservationStatus && <p>{reservationStatus}</p>}
+          <button onClick={() => window.location.href = "/cinemas"}>Decline</button>
+              </div>
+            </>
+          );
 }
 
 //tets

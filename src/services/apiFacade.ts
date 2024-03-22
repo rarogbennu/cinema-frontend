@@ -190,8 +190,7 @@ async function getReservationsByScreeningId(screeningId: number): Promise<Reserv
 }
 
 // Create Reservation
-async function createReservation(
-  reservations: Reservation[]
+async function createReservation(reservations: Reservation[]
 ): Promise<Reservation[]> {
   const options = makeOptions("POST", reservations, true);
   return fetch(RESERVATION_URL, options).then(handleHttpErrors);
